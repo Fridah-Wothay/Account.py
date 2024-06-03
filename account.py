@@ -9,60 +9,56 @@ class  Account:
                 return self._ _ _balance
             else:
                 return "wrong pin"       
-def account_statement(self, pin):
-        if pin == self.__pin:
-            transactions = ["Deposit $800", "Withdrawal $100"]
-            return "\n".join(transactions)
+                class Account:
+    def __init__(self, account_number, owner_name, balance, overdraft_limit, interest_rate, min_balance):
+        self.account_number = account_number
+        self.owner_name = owner_name
+        self.balance = balance
+        self.overdraft_limit = overdraft_limit
+        self.interest_rate = interest_rate
+        self.min_balance = min_balance
+        self.transaction_history = []
+    def deposit(self, amount):
+        self.balance += amount
+    def withdraw(self, amount):
+        if (self.balance - amount) >= self.min_balance - self.overdraft_limit:
+            self.balance -= amount
+            return True
         else:
-            return "Wrong PIN"
-    def set_overdraft_limit(self, limit, pin):
-        if pin == self.__pin:
-            self.__overdraft_limit = limit
-            return f"Overdraft limit set to ${limit}."
+            return False
+    def view_account_details(self):
+        return f"Account Owner: {self.owner_name}\nBalance: {self.balance}"
+    def change_account_owner(self, new_owner_name):
+        self.owner_name = new_owner_name
+    def account_statement(self):
+        for transaction in self.transaction_history:
+            print(transaction)
+    def set_overdraft_limit(self, new_overdraft_limit):
+        self.overdraft_limit = new_overdraft_limit
+    def interest_calculation(self):
+        interest_amount = (self.balance * self.interest_rate) / 100
+        self.balance += interest_amount
+    def freeze_account(self):
+     def unfreeze_account(self):
+      def transaction_history(self):
+        return self.transaction_history
+    def set_min_balance(self, new_min_balance):
+        self.min_balance = new_min_balance
+    def transfer_funds(self, recipient_account, amount):
+        if (self.balance - amount) >= self.min_balance - self.overdraft_limit:
+            recipient_account.deposit(amount)
+            self.withdraw(amount)
+            return True
         else:
-            return "Wrong PIN"
-    def calculate_interest(self, rate, pin):
-        if pin == self.__pin:
-            interest_amount = self.__balance * rate / 100
-            self.__balance += interest_amount
-            return f"Interest calculated. New balance: ${self.__balance}"
-        else:
-            return "Wrong PIN"
-    def freeze_account(self, pin):
-        if pin == self.__pin:
-            self.__is_frozen = True
-            return "Account frozen."
-        else:
-            return "Wrong PIN"
-    def unfreeze_account(self, pin):
-        if pin == self.__pin:
-            self.__is_frozen = False
-            return "Account unfrozen."
-        else:
-            return "Wrong PIN"
-    def transaction_history(self, pin):
-        if pin == self.__pin:
-            return "\n".join(self.__transaction_history)
-        else:
-            return "Wrong PIN"
-    def set_minimum_balance(self, min_balance, pin):
-        if pin == self.__pin:
-            self.__minimum_balance = min_balance
-            return f"Minimum balance requirement set to ${min_balance}."
-        else:
-            return "Wrong PIN"
-    def transfer_funds(self, amount, recipient_number, pin):
-        if pin == self.__pin:
-            if self.__balance >= amount:
-                self.__balance -= amount
-                self.__transaction_history.append(f"Withdrawal: ${amount} to {recipient_number}")
-                return f"Funds transferred successfully. New balance: ${self.__balance}"
-            else:
-                return "Insufficient funds."
-        else:
-            return "Wrong PIN"
-    def close_account(self, pin):
-        if pin == self.__pin:
-            return "Account closed."
-        else:
-            return "Wrong PIN"
+            return False
+
+
+
+
+
+
+
+
+
+
+
